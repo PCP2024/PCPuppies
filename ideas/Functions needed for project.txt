@@ -1,0 +1,99 @@
+Functions needed for project:
+
+1. function that takes in path and reads in image. into numpy format
+	test if file exists at the path
+	test if datatype is numpy array
+	test if image shape is 3 dimensional (2 spatial, 1 rgb)
+		if it's 2d image should be assumed to be greyscale. expand out 1 dimension, to be able to work with it further
+
+2. function that displays numpy array as image for user
+	test: see it with your eyes
+
+3. crop. input
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Image analysis forum 
+https://forum.image.sc/
+
+To-do 
+Get development environment (python 3.X)
+Install IDE (e.g. VSC)
+Create virtual environment (e.g. conda, venv)
+Install Github desktop
+
+First assignment: 
+	Write a simple image loader to load one image file (or image stack)
+	(Input: path to an image file; returns: the loaded image))
+
+Project plan (Revised)
+Function: 
+Load data
+Project plan
+
+Neuron segmentation 
+Load data for each format. 
+Save out images. 
+Overwrite images 
+Verbosity level setting
+Basic image editing for data augmentation (DL)
+Crop
+Rotate 
+Mirror
+Compress
+Apply filter
+Extract edge
+Blurring 	
+Colour shift
+noising/denoising
+RGB to other colour codes (e.g. HSV)
+Object segmentation
+Detect object properties 
+Luminance 
+Intencity (?) 
+Areas 
+Batch processing
+API to DNN tools 
+Data formatting (?)
+Annotation 
+DLSS  
+Adding meta-data  
+
+
+Ten rules  (https://doi.org/10.1371/journal.pcbi.1005412)
+Rule 1: Use version control
+Rule 2: Document your code and usage
+Rule 3: Make common operations easy to control
+Rule 4: Version your releases
+Rule 5: Reuse software (within reason)
+Rule 6: Rely on build tools and package managers for installation
+Rule 7: Do not require root or other special privileges to install or run
+Rule 8: Eliminate hard-coded paths
+Rule 9: Include a small test set that can be run to ensure the software is actually working
+Rule 10: Produce identical results when given identical inputs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
