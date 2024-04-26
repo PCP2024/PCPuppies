@@ -9,7 +9,7 @@ Functions needed for project:
 2. function that displays numpy array as image for user
 	test: see it with your eyes
 
-3. crop. input
+3. crop. input 
 
 
 
@@ -17,7 +17,7 @@ Functions needed for project:
 
 
 
-
+ISSUE!!!
 
 
 
