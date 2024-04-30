@@ -34,4 +34,3 @@ def load_image_as_numpy_array_from_PILimage(image):
     :return: numpy array
     '''
     return np.array(image)
-
