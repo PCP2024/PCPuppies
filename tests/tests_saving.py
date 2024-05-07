@@ -7,19 +7,17 @@ from PIL import Image
 from dataio.save_Image import saveImage
 from dataio.save_Image import saveNumpyArrayAsImage
 
-class Test_LoadFunctions(unittest.TestCase):
+class Test_SaveFunctions(unittest.TestCase):
     """ Simple functionality tests. """
 
     def test_saveImage(self):        
-        image = load_image_as_PILimage('.\demodata\example_pic.jpg')
-        self.assertEqual(image.size, (690, 786), 'Image size is not correct')
+        saveImage('.\demodata\example_pic.jpg')
+        self.assertIn(image.size, (690, 786), 'Image size is not correct')
 
     def test_saveNumpyArrayAsImage(self):        
-        image = load_image_as_numpy_array('.\demodata\example_pic.jpg')
-        self.assertEqual(image.shape, (786, 690, 3), 'Image size is not correct')
+        saveNumpyArrayAsImage('.\demodata\example_pic.jpg')
+        self.assertIn(image.shape, (786, 690, 3), 'Image size is not correct')
         
-    
-
 if __name__ == '__main__':
     unittest.main()
         

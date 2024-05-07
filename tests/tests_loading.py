@@ -28,7 +28,7 @@ class Test_LoadFunctions(unittest.TestCase):
     def test_load_image_as_numpy_array_from_PILimage(self):
         image_PIL = Image.open('.\demodata\example_pic.jpg')
         image = load_image_as_numpy_array_from_PILimage(image_PIL)
-        self.assertEqual(type(image), np.ndarray, 'Image is not a PIL Image')
+        self.assertEqual(type(image), np.ndarray, 'Image is not a numpy array')
 
 
 if __name__ == '__main__':
