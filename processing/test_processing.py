@@ -10,5 +10,9 @@ class ProcessingTestCase(unittest.TestCase):
     def test_rotate_image(self):
         self.assertEqual(self.rotated.size, self.original_image.size, 'The image is not rotated')   
         
-if __name__ == '__main__':
-    unittest.main()   
+if __name__ == "__main__":
+    # Test suite
+    test_suite = unittest.TestLoader().loadTestsFromTestCase(ProcessingTestCase)
+    
+    # To run it 
+    unittest.TextTestRunner(verbosity=2).run(test_suite) 
