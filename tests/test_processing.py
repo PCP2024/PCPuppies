@@ -1,11 +1,11 @@
 import unittest
 import numpy as np
-import image_loader
-import processing_fun 
+from dataio import image_loader
+from processing import processing_fun 
 
 class ProcessingTestCase(unittest.TestCase):
     def setUp(self):
-      self.original_image = image_loader.load_image_as_PILimage('/content/image.png')
+      self.original_image = image_loader.load_image_as_PILimage('C:/Users/gomar/OneDrive/Escritorio/PCPuppies/PCPuppies/1.jpeg')
       self.rotated = processing_fun.rotate(self.original_image, 90)
       self.mirrored = processing_fun.mirror(self.original_image)
       self.blured = processing_fun.blur(self.original_image)
@@ -17,11 +17,15 @@ class ProcessingTestCase(unittest.TestCase):
       mirrored = np.array(self.mirrored)
       image = np.array(self.original_image)
       self.assertEqual(np.array_equal(np.flip(image, axis=1), mirrored), True, 'The image is not mirrored')
-      
-        
+  
+if __name__ == '__main__':
+    unittest.main()   
+
+'''      
 if __name__ == "__main__":
     # Create a test suite
     test_suite = unittest.TestLoader().loadTestsFromTestCase(ProcessingTestCase)
     
     # Run the test suite
     unittest.TextTestRunner(verbosity=2).run(test_suite)
+    '''
