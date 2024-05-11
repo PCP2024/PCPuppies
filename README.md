@@ -26,6 +26,15 @@ python3 -m pip install --upgrade Pillow
 
 3 - crop. input 
 
+# Running Test
+Tests are automated to run with unittest, call and debug them with your terminal.
+
+To execute tests using unittest run:
+
+```
+-m unittest tests.
+
+```
 
 # License:
 <https://vscode.dev/github/PCP2024/PCPuppies/blob/main/LICENSE>
