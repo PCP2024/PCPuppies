@@ -1,8 +1,6 @@
 import unittest
-import sys
-import cv2
 import numpy as np
-import PIL.Image
+import os
 from PIL import Image
 from dataio.save_Image import saveImage
 from dataio.save_Image import saveNumpyArrayAsImage
@@ -11,12 +9,13 @@ class Test_SaveFunctions(unittest.TestCase):
     """ Simple functionality tests. """
 
     def test_saveImage(self):        
-        saveImage('.\demodata\example_pic.jpg')
-        self.assertIn(image.size, (690, 786), 'Image size is not correct')
+        saveImage('example_pic.jpg', '.\saved_pics')
+        self.assertTrue(os.path.exists('.\saved_pics\example_pic.jpg'), 'Image could not be saved')
 
-    def test_saveNumpyArrayAsImage(self):        
-        saveNumpyArrayAsImage('.\demodata\example_pic.jpg')
-        self.assertIn(image.shape, (786, 690, 3), 'Image size is not correct')
+    def test_saveNumpyArrayAsImage(self):     
+        image_array = np.array(np.random.random(690, 786))
+        saveNumpyArrayAsImage(image_array, '.\saved_pics\random_pixels.jpg')
+        self.assertTrue(os.path.exists('.\saved_pics\random_pixels.jpg'), 'Numpy Array could not be saved as Image')
         
 if __name__ == '__main__':
     unittest.main()
