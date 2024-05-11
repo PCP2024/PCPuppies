@@ -2,8 +2,8 @@ import unittest
 import numpy as np
 import os
 from PIL import Image
-from dataio.save_Image import saveImage
-from dataio.save_Image import saveNumpyArrayAsImage
+from dataio.saving_fun import saveImage
+from dataio.saving_fun import saveNumpyArrayAsImage
 
 class Test_SaveFunctions(unittest.TestCase):
     """ Simple functionality tests. """

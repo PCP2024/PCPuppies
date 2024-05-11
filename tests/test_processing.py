@@ -1,11 +1,11 @@
 import unittest
 import numpy as np
-from dataio import image_loader
+from dataio import loading_fun
 from processing import processing_fun 
 
 class ProcessingTestCase(unittest.TestCase):
     def setUp(self):
-      self.original_image = image_loader.load_image_as_PILimage('.\demodata\example_pic.jpg')
+      self.original_image = loading_fun.load_image_as_PILimage('.\demodata\example_pic.jpg')
       self.rotated = processing_fun.rotate(self.original_image, 90)
       self.mirrored = processing_fun.mirror(self.original_image)
       self.blured = processing_fun.blur(self.original_image)
