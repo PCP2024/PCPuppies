@@ -3,7 +3,7 @@
 ## [0.0.2] - 2024-05-11
 
 ### Added
-- functions for analyzing:
+- functions for analyzing: imageToNumpyArray, get_image_shape
 
 ### Changed
 - 
