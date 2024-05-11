@@ -4,10 +4,7 @@ import cv2
 import numpy as np
 import PIL.Image
 from PIL import Image
-from dataio.image_loader import load_image_as_PILimage
-from dataio.image_loader import load_image_as_numpy_array
-from dataio.image_loader import load_image_as_PILimage_from_numpy_array
-from dataio.image_loader import load_image_as_numpy_array_from_PILimage
+from dataio.image_loader import *
 
 class Test_LoadFunctions(unittest.TestCase):
     """ Simple functionality tests. """
