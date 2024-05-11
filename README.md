@@ -13,19 +13,29 @@ python3 -m pip install --upgrade pip
 
 python3 -m pip install --upgrade Pillow
 
+# Folders:
 
-# Functions:
-1 - function that takes in path and reads in image. into numpy format
-	test if file exists at the path
-	test if datatype is numpy array
-	test if image shape is 3 dimensional (2 spatial, 1 rgb)
-		if it's 2d image should be assumed to be greyscale. expand out 1 dimension, to be able to work with it further
+1 - analyze 
 
-2 - function that displays numpy array as image for user
-	test: see it with your eyes
+2 - dataio
 
-3 - crop. input 
+3 - demodata 
 
+4 - processing
+
+5 - configuration
+
+6 - tests
+
+# Running Test
+Tests are automated to run with unittest, call and debug them with your terminal.
+
+To execute tests using unittest run:
+
+```
+-m unittest tests.
+
+```
 
 # License:
 <https://vscode.dev/github/PCP2024/PCPuppies/blob/main/LICENSE>
