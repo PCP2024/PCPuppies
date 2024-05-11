@@ -28,4 +28,7 @@ python3 -m pip install --upgrade Pillow
 
 
 # License:
-.\demodata\example_pic.jp
+[License link][https://vscode.dev/github/PCP2024/PCPuppies/blob/main/LICENSE]
+
+# Version:
+[Version link][https://vscode.dev/github/PCP2024/PCPuppies/blob/main/VERSION]
