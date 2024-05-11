@@ -1,14 +1,5 @@
 # Changelog
 
-## [0.0.1] - 2024-04-23
-
-### Added
-- requirements.txt
-- functions for loading images: load_image_as_PILimage, load_image_as_numpy_array, load_image_as_PILimage_from_numpy_array, load_image_as_numpy_array_from_PILimage
-- functions for saving images: saveImage, saveNumpyArrayAsImage
-- functions for processing: rotate, mirror, blur, edge_enhance, find_edges, smooth
-
-
 ## [0.0.2] - 2024-05-11
 
 ### Added
@@ -28,3 +19,13 @@
 
 ### Security
 - 
+
+## [0.0.1] - 2024-04-23
+
+### Added
+- requirements.txt
+- functions for loading images: load_image_as_PILimage, load_image_as_numpy_array, load_image_as_PILimage_from_numpy_array, load_image_as_numpy_array_from_PILimage
+- functions for saving images: saveImage, saveNumpyArrayAsImage
+- functions for processing: rotate, mirror, blur, edge_enhance, find_edges, smooth
+
+
