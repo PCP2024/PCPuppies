@@ -23,5 +23,9 @@ def find_edges(original_image):
 def smooth(original_image):
     return original_image.filter(SMOOTH_MORE)
 
+def invert(original_image):
+    return ImageOps.invert(original_image)
 
+def apply_threshold(original_image, threshold):
+    return ImageOps.autocontrast(original_image, cutoff=threshold)
 
