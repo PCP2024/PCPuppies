@@ -28,7 +28,7 @@ python3 -m pip install --upgrade Pillow
 
 
 # License:
-[License link][https://vscode.dev/github/PCP2024/PCPuppies/blob/main/LICENSE]
+<https://vscode.dev/github/PCP2024/PCPuppies/blob/main/LICENSE>
 
 # Version:
-[Version link][https://vscode.dev/github/PCP2024/PCPuppies/blob/main/VERSION]
+<https://vscode.dev/github/PCP2024/PCPuppies/blob/main/VERSION>
