@@ -1,5 +1,10 @@
 # PCPuppies
 
+# Members
+
+![PCPuppies_grouppicture](https://github.com/PCP2024/PCPuppies/assets/35321351/1c9d275a-68fc-48ba-946c-df8298c0acea)
+
+
 # Description:
 This project is intended to be used for editing and analyzing images through the use of PIL, each function has at least one test.
 
