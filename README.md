@@ -2,7 +2,7 @@
 
 # Members
 
-![alt text](https://github.com/PCP2024/PCPuppies/tree/main/demodata/PCPuppies_grouppicture.png?raw=true)
+![plot](https://github.com/PCP2024/PCPuppies/tree/main/demodata/PCPuppies_grouppicture.png?raw=true)
 
 # Description:
 This project is intended to be used for editing and analyzing images through the use of PIL, each function has at least one test.
