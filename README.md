@@ -41,4 +41,6 @@ To execute tests using unittest run:
 <https://vscode.dev/github/PCP2024/PCPuppies/blob/main/LICENSE>
 
 # Version:
+0.0.2
+
 <https://vscode.dev/github/PCP2024/PCPuppies/blob/main/VERSION>
