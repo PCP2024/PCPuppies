@@ -13,7 +13,6 @@ def main():
     parser.add_argument('output_path', type=str, help='path to save the image')
     parser.add_argument('angle', type=int, help='angle to rotate the image')
     parser.add_argument('threshold', type=int, help='threshold to apply to the image')
-    # parser.add_argument('--version', type=str, help='get content of version file')
 
     # Load the data
     args = parser.parse_args()
@@ -40,6 +39,8 @@ def main():
         print("ERROR: Please enter a valid processing function")
 
     saveImage(image_processed, args.output_path)
+
+# TODO - version, optional arguments, --?????
 
 if __name__ == '__main__':
     main()
