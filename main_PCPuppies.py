@@ -5,17 +5,11 @@ from dataio.saving_fun import *
 from analyze.analysis_fun import *
 import argparse
 
-def main():
-    parser =  argparse.ArgumentParser(description="first cli")
+parser =  argparse.ArgumentParser(description="first cli")
 
-    parser.add_argument('image_path', type=str, help='path to image')
-    parser.add_argument('function', type=str, help='processing function to apply to the image')
-    parser.add_argument('output_path', type=str, help='path to save the image')
-    parser.add_argument('angle', type=int, help='angle to rotate the image')
-    parser.add_argument('threshold', type=int, help='threshold to apply to the image')
+def run_command(image_path, function, output_path, **options):
 
-    # Load the data
-    args = parser.parse_args()
+    # Load the data    
     image_input = load_image_as_PILimage(args.image_path)
 
     # Process the data
@@ -40,7 +34,26 @@ def main():
 
     saveImage(image_processed, args.output_path)
 
-# TODO - version, optional arguments, --?????
-
 if __name__ == '__main__':
-    main()
+
+    if len(sys.argv) == 2:
+        parser.add_argument('-v', '--version', type=int, help='version of program', default=0)
+        args = parser.parse_args()
+        if args.version:
+            # print VERSION file that is in this directory
+            with open('VERSION', 'r') as file:
+                print(file.read())
+        else:
+            print("Please enter a valid argument")
+    else:
+        parser.add_argument('image_path', type=str, help='path to image')
+        parser.add_argument('function', type=str, help='processing function to apply to the image')
+        parser.add_argument('output_path', type=str, help='path to save the image')
+        parser.add_argument('-a', '--angle', type=int, help='angle to rotate the image', default=0)
+        parser.add_argument('-t', '--threshold', type=int, help='threshold to apply to the image', default=0)
+        args = parser.parse_args()
+        run_command(**vars(args))
+
+    
+
+        
