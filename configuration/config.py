@@ -2,7 +2,10 @@ import json
 
 hard_coded_values = {
     "threshold": {
-        "threshold": "5",
+        "threshold": "20",
+    }, 
+    "rotate": {
+        "degree": "35",
     }
 }
 

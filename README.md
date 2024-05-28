@@ -8,6 +8,9 @@
 # Description:
 This project is intended to be used for editing and analyzing images through the use of PIL, each function has at least one test.
 
+# Functions
+<img width="612" alt="pcpuppies_functionality" src="https://github.com/PCP2024/PCPuppies/assets/35321351/0182a7ba-6889-45b1-961f-ff42343c64fe">
+
 # Install:
 python3 -m pip install --upgrade pip
 
