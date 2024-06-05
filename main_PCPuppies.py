@@ -53,7 +53,3 @@ if __name__ == '__main__':
         parser.add_argument('-t', '--threshold', type=int, help='threshold to apply to the image', default=0)
         args = parser.parse_args()
         run_command(**vars(args))
-
-    
-
-        
