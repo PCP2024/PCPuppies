@@ -18,7 +18,7 @@ TODO import PACKAGENAME
 
 ## Folders
 
-1 - analyze \n
+1 - analyze \
 2 - dataio
 3 - demodata
 4 - processing
