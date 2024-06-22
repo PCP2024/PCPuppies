@@ -30,8 +30,7 @@ TODO import PACKAGENAME
 
 Tests are automated to run with unittest, call and debug them with your terminal.
 
-To execute tests using unittest run:
-
+To execute tests using unittest run: \
 *-m unittest tests.*
 
 ## License
