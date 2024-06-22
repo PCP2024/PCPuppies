@@ -14,22 +14,16 @@ This project is intended to be used for editing and analyzing images through the
 
 ## Install
 
-# TODO import PACKAGENAME
+TODO import PACKAGENAME
 
 ## Folders
 
 1 - analyze
-
 2 - dataio
-
 3 - demodata
-
 4 - processing
-
 5 - configuration
-
 6 - tests
-
 7 - processed-pics-dump
 
 ## Running Test
@@ -38,7 +32,7 @@ Tests are automated to run with unittest, call and debug them with your terminal
 
 To execute tests using unittest run:
 
-\it{-m unittest tests.}
+*-m unittest tests.*
 
 ## License
 
