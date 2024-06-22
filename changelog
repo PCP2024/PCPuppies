@@ -1,70 +1,54 @@
 # Changelog
 
-## [0.1.4] - 2024-05-11
+## [0.1.3] - 2024-06-22
 
 ### Added
 
-- Graphical User Interface
+- Enabling of download as a package
 
-### Changed
+### Improved
 
-- 
-
-### Deprecated
-
-- 
+- GUI
 
 ### Fixed
 
-- 
+- CLI (added --help and --version commands)
 
-### Removed
-
-- 
-
-### Security
-
-- 
-
-## [0.1.3] - 2024-05-11
+## [0.1.2] - 2024-06-11
 
 ### Added
 
-- Commmand Line Interface
+- Containerization via Docker
 
-### Changed
+## [0.1.1] - 2024-06-4
 
-- 
+### Added
 
-### Fixed
+- First Graphical User Interface (very basic)
 
-- 
+## [0.1.0] - 2024-05-11
 
-## [0.0.2] - 2024-05-11
+### Added
+
+- Commmand Line Interface (except --help and --version)
+
+## [0.0.3] - 2024-05-11
 
 ### Added
 
 - functions for analyzing: imageToNumpyArray, get_image_shape
-
-### Changed
-
-- 
-
-### Deprecated
-
-- 
-
-### Fixed
-
-- 
+- configuration file
+- .gitignore file
 
 ### Removed
 
-- 
+- ideas folder
 
-### Security
+## [0.0.2] - 2024-05-7
 
-- 
+### Added
+
+- tests for processing and analysis functions
 
 ## [0.0.1] - 2024-04-23
 
@@ -74,3 +58,4 @@
 - functions for loading images: load_image_as_PILimage, load_image_as_numpy_array, load_image_as_PILimage_from_numpy_array, load_image_as_numpy_array_from_PILimage
 - functions for saving images: saveImage, saveNumpyArrayAsImage
 - functions for processing: rotate, mirror, blur, edge_enhance, find_edges, smooth
+- ideas folder for brainstorming
