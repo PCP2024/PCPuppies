@@ -19,11 +19,11 @@ TODO import PACKAGENAME
 ## Folders
 
 1 - analyze \
-2 - dataio
-3 - demodata
-4 - processing
-5 - configuration
-6 - tests
+2 - dataio \
+3 - demodata \
+4 - processing \
+5 - configuration \
+6 - tests \
 7 - processed-pics-dump
 
 ## Running Test
