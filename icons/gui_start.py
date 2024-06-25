@@ -30,13 +30,15 @@ class MainWindow(QMainWindow):
         toolbar.setIconSize(QSize(50, 50))
         self.addToolBar(toolbar)
 
-        button_action_load = QAction(QIcon("load.jpg"), "Import image", self)
-        button_action_load.triggered.connect(self.ButtonClickLoad)
-        toolbar.addAction(button_action_load)
-
         # set up a menu
         menu = self.menuBar()
         file_menu = menu.addMenu("File")
+
+        # implement actions
+        button_action_load = QAction(QIcon("load.jpg"), "Import image", self)
+        button_action_load.triggered.connect(self.ButtonClickLoad)
+        
+        toolbar.addAction(button_action_load)        
         file_menu.addAction(button_action_load)   
 
         button_action_save = QAction(QIcon("save.png"), "Save image", self)        
