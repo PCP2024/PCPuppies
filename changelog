@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.4] - 2024-07-02
+
+ - modified trainig loop of model to include test set. I also freeze more weights now
+ - added a function to classify a new image and return category (needs to be added to the proper analysis function)
 
 ## [0.1.4] - 2024-06-25
 
