@@ -1,7 +1,7 @@
 # Changelog
 
 
-## [0.0.3] - 2024-06-25
+## [0.1.4] - 2024-06-25
 
 ### Added
 - a training loop to train pytorch model to classify dog breeds. -> need to implement it to a function to classify new images
