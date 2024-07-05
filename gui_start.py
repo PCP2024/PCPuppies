@@ -1,12 +1,58 @@
 import sys
 from PyQt6.QtWidgets import (
-    QApplication, QMainWindow, QPushButton, QLabel, QToolBar, QMessageBox, QWidget, QVBoxLayout, QFileDialog
+    QApplication, QMainWindow, QPushButton, QLabel, QToolBar, QMessageBox, QWidget, QTextEdit, 
+    QDialogButtonBox, QDialog, QVBoxLayout, QFileDialog, QLineEdit
 )
 from PyQt6.QtGui import QPixmap, QIcon, QAction, QImage
 from PyQt6.QtCore import QSize, Qt
 from processing import processing_fun
+from analyze import analysis_fun
 from PIL import Image, ImageFilter
 
+class AnalysisDialog(QDialog):
+    def __init__(self, analysis_result, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Analysis Result")
+
+        layout = QVBoxLayout()
+        
+        # text edit to show the analysis result
+        result_text = QTextEdit()
+        result_text.setReadOnly(True)
+        result_text.setPlainText(analysis_result)
+        layout.addWidget(result_text)
+
+        self.setLayout(layout)
+        self.setMinimumSize(400, 200)
+        
+class InputDialog(QDialog):
+    def __init__(self, label_text, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Input Required")
+        self.input_value = None
+
+        layout = QVBoxLayout()
+
+        self.label = QLabel(label_text)
+        layout.addWidget(self.label)
+
+        self.input_field = QLineEdit()
+        layout.addWidget(self.input_field)
+
+        self.button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        self.button_box.accepted.connect(self.accept)
+        self.button_box.rejected.connect(self.reject)
+        layout.addWidget(self.button_box)
+
+        self.setLayout(layout)
+
+    def accept(self):
+        self.input_value = self.input_field.text()
+        super().accept()
+
+    def get_value(self):
+        return self.input_value
+    
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -16,7 +62,8 @@ class MainWindow(QMainWindow):
         self.original_pixmap = None  # for the original image
         self.max_width = 800  # maximum width for the image
         self.max_height = 600  # maximum height for image
-
+        self.history_stack = []
+        
         # Set up a button - example picture
         button = QPushButton("Example Picture")
         button.clicked.connect(self.button_click)
@@ -36,43 +83,66 @@ class MainWindow(QMainWindow):
         button_action_load = QAction(QIcon("load.jpg"), "Import image", self)
         button_action_load.triggered.connect(self.button_click_load)
         
-        toolbar.addAction(button_action_load)
+        #toolbar.addAction(button_action_load)
         file_menu.addAction(button_action_load)
 
         button_action_save = QAction(QIcon("icons/save-mini.jpg"), "Save image", self)
         button_action_save.triggered.connect(self.button_click_save)
         file_menu.addAction(button_action_save)
         
-        button_action_mirror = QAction(QIcon("load.jpg"), "Mirror", self)
+        button_action_rotate = QAction(QIcon("icons/rotate.png"), "Rotate", self)
+        button_action_rotate.triggered.connect(lambda: self.button_click_with_input("Enter degree of rotation:", processing_fun.rotate))
+        
+        button_action_mirror = QAction(QIcon("icons/mirror.png"), "Mirror", self)
         button_action_mirror.triggered.connect(lambda: self.button_click_process(processing_fun.mirror))
         
-        button_action_blur = QAction(QIcon("blur.jpg"), "Blur", self)
+        button_action_blur = QAction(QIcon("icons/cute_humans.png"), "Blur", self)
         button_action_blur.triggered.connect(lambda: self.button_click_process(processing_fun.blur))
         
-        button_action_edge = QAction(QIcon("edge.jpg"), "Edge enhance", self)
+        button_action_edge = QAction(QIcon("icons/edge_enhance.png"), "Edge enhance", self)
         button_action_edge.triggered.connect(lambda: self.button_click_process(processing_fun.edge_enhance))
 
-        button_action_edgef = QAction(QIcon("edgef.jpg"), "Find edges", self)
+        button_action_edgef = QAction(QIcon("icons/find_edges.png"), "Find edges", self)
         button_action_edgef.triggered.connect(lambda: self.button_click_process(processing_fun.find_edges))
 
-        button_action_smooth = QAction(QIcon("smooth.jpg"), "Smooth", self)
+        button_action_smooth = QAction(QIcon("icons/smooth.png"), "Smooth", self)
         button_action_smooth.triggered.connect(lambda: self.button_click_process(processing_fun.smooth))
 
-        button_action_invert = QAction(QIcon("invert.jpg"), "Invert", self)
+        button_action_invert = QAction(QIcon("icons/invert.png"), "Invert", self)
         button_action_invert.triggered.connect(lambda: self.button_click_process(processing_fun.invert))
         
-        button_action_revert = QAction(QIcon("revert.jpg"), "Revert to Original", self)
+        button_action_thresh = QAction(QIcon("icons/thresh.png"), "Apply threshold", self)
+        button_action_thresh.triggered.connect(lambda: self.button_click_with_input("Enter threshold:", processing_fun.apply_threshold))
+        
+        
+        button_action_toNumpyArray = QAction(QIcon("toArray.png"), "Convert to numpy Array", self)
+        button_action_toNumpyArray.triggered.connect(lambda: self.button_click_analysis(analysis_fun.imageToNumpyArray))
+        
+        button_action_shape = QAction(QIcon("shape.jpg"), "Get shape", self)
+        button_action_shape.triggered.connect(lambda: self.button_click_analysis(analysis_fun.get_image_shape))
+        
+        button_action_revert = QAction(QIcon("revert.png"), "Original image", self)
         button_action_revert.triggered.connect(self.button_click_revert)
         toolbar.addAction(button_action_revert)
-
+        
+        button_action_undo = QAction(QIcon("icons/undo.png"), "Undo", self)
+        button_action_undo.triggered.connect(self.button_click_undo)
+        toolbar.addAction(button_action_undo)
+        
         file_menu = menu.addMenu("Processing")
+        file_menu.addAction(button_action_rotate)
         file_menu.addAction(button_action_blur)
         file_menu.addAction(button_action_mirror)
         file_menu.addAction(button_action_edge)
         file_menu.addAction(button_action_edgef)
         file_menu.addAction(button_action_smooth)
         file_menu.addAction(button_action_invert)
-        file_menu.addAction(button_action_revert)
+        file_menu.addAction(button_action_thresh)
+        
+        file_menu = menu.addMenu("Analysis")
+        file_menu.addAction(button_action_toNumpyArray)
+        file_menu.addAction(button_action_shape)
+    
 
     def button_click(self):
         print("Button clicked - here is an example picture")
@@ -92,6 +162,9 @@ class MainWindow(QMainWindow):
         
     def button_click_process(self, process_function):
         if self.current_pixmap:
+            # Save the current state to the history stack before processing
+            self.history_stack.append(self.current_pixmap.copy())
+            
             image = self.current_pixmap.toImage()
             pil_image = Image.fromqpixmap(image)  # QImage to PIL Image
 
@@ -106,7 +179,34 @@ class MainWindow(QMainWindow):
             self.resize(self.current_pixmap.width(), self.current_pixmap.height())
         else:
             QMessageBox.warning(self, "No Image", "Please load an image first.")
+    
+    def button_click_analysis(self, analysis_function):
+        if self.current_pixmap:
+            image = self.current_pixmap.toImage()
+            pil_image = Image.fromqpixmap(image)  # QImage to PIL Image
+
+            altered_image = analysis_function(pil_image)
+
+            analysis_result = str(altered_image)
+
+            dialog = AnalysisDialog(analysis_result, self)
+            dialog.exec()
+        else:
+            QMessageBox.warning(self, "No Image", "Please load an image first.")
             
+    def button_click_with_input(self, label_text, process_function):
+        if self.current_pixmap:
+            dialog = InputDialog(label_text, self)
+            if dialog.exec() == QDialog.DialogCode.Accepted:
+                input_value = dialog.get_value()
+                try:
+                    input_value = float(input_value)
+                    self.button_click_process(lambda img: process_function(img, input_value))
+                except ValueError:
+                    QMessageBox.warning(self, "Invalid Input", "Please enter a valid number.")
+        else:
+            QMessageBox.warning(self, "No Image", "Please load an image first.")
+                   
     def button_click_load(self):
         fileName, _ = QFileDialog.getOpenFileName(self, "Open Image", "", "Image Files (*.jpg *.png *.jpeg)")
         if fileName:
@@ -133,6 +233,18 @@ class MainWindow(QMainWindow):
             self.resize(self.current_pixmap.width(), self.current_pixmap.height())
         else:
             QMessageBox.warning(self, "No Original Image", "No original image to revert to.")
+    
+    def button_click_undo(self):
+        if self.history_stack:
+            self.current_pixmap = self.history_stack.pop()
+
+            label = QLabel(self)
+            label.setPixmap(self.current_pixmap)
+            self.setCentralWidget(label)
+            self.resize(self.current_pixmap.width(), self.current_pixmap.height())
+        else:
+            QMessageBox.warning(self, "No History", "No previous state to revert to.")
+    
             
 
 if __name__ == '__main__':
