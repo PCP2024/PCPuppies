@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.5] - 2024-07-07
+
+ - dog classifier still overfits a lot, but this will not be fixed anymore...
+ - moved classification funciton into a .py file to be acceced from the gui
+
+
 ## [0.1.4] - 2024-07-02
 
  - modified trainig loop of model to include test set. I also freeze more weights now
