@@ -16,11 +16,10 @@ def classify_dogbreed(img_path, crop = False, xmin = None, ymin = None, xmax = N
 
     with open(img_path, 'rb') as f:
         image = Image.open(f).convert("RGB")
-
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # load the model
     model_path = os.path.abspath(os.path.join('analyze','dog_breed_classifier.pth'))
-    print('---------------',model_path)
-    model = torch.load(model_path)
+    model = torch.load(model_path).to(device)
     model.eval()
     label_path = os.path.abspath(os.path.join('analyze','dog_labels.npy'))
 
@@ -34,7 +33,7 @@ def classify_dogbreed(img_path, crop = False, xmin = None, ymin = None, xmax = N
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ])
 
-    image = transform(image).unsqueeze(0)
+    image = transform(image).to(device).unsqueeze(0)
 
     #display image
     outputs = model.forward(image)
