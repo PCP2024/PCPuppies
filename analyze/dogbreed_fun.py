@@ -18,10 +18,12 @@ def classify_dogbreed(img_path, crop = False, xmin = None, ymin = None, xmax = N
         image = Image.open(f).convert("RGB")
 
     # load the model
-    model_path = os.path.join('PCPuppies', 'analyze', 'dog_breed_classifier.pth')
+    model_path = os.path.abspath(os.path.join('analyze','dog_breed_classifier.pth'))
+    print('---------------',model_path)
     model = torch.load(model_path)
     model.eval()
-    label_path = os.path.join('PCPuppies', 'analyze', 'dog_labels.npy')
+    label_path = os.path.abspath(os.path.join('analyze','dog_labels.npy'))
+
     all_labels = np.load(label_path)
     if crop:
         image = image.crop((xmin, ymin, xmax, ymax))
