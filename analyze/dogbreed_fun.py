@@ -19,7 +19,7 @@ def classify_dogbreed(img_path, crop = False, xmin = None, ymin = None, xmax = N
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # load the model
     model_path = os.path.abspath(os.path.join('analyze','dog_breed_classifier.pth'))
-    model = torch.load(model_path).to(device)
+    model = torch.load(model_path, map_location=torch.device('cpu')).to(device)
     model.eval()
     label_path = os.path.abspath(os.path.join('analyze','dog_labels.npy'))
 

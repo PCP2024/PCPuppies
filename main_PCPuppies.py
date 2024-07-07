@@ -61,6 +61,6 @@ def process_arguments():
             saveImage(image_processed, args.output_path)
 
 if __name__ == '__main__':
-    x = classify_dogbreed('demodata/dog_image.jpeg')
+    x = classify_dogbreed('demodata/golden.jpg')
     print(x)
     #process_arguments()
