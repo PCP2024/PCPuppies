@@ -56,7 +56,6 @@ def process_arguments():
                 image_processed = apply_threshold(image_input, args_dict['autocontrast'])
             else:
                 print("ERROR: Please enter a valid processing function")
-
             saveImage(image_processed, args.output_path)
 
 if __name__ == '__main__':

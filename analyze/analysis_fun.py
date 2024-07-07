@@ -1,4 +1,5 @@
 import numpy as np
+from PIL import ImageOps
 
 def imageToNumpyArray(image):
     '''
@@ -14,5 +15,5 @@ def get_image_shape(image):
     :param image: image to get the shape of, as numpy array
     :return: shape of the image
     '''
-    return image.shape
+    return image.size
 
