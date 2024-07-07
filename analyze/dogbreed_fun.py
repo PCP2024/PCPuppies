@@ -5,6 +5,7 @@ import torch
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 def classify_dogbreed(img_path, crop = False, xmin = None, ymin = None, xmax = None, ymax = None, test_mode = False):
     '''
@@ -17,11 +18,14 @@ def classify_dogbreed(img_path, crop = False, xmin = None, ymin = None, xmax = N
         image = Image.open(f).convert("RGB")
 
     # load the model
-    model = torch.load('dog_breed_classifier.pth')
+    model_path = os.path.join('PCPuppies', 'analyze', 'dog_breed_classifier.pth')
+    model = torch.load(model_path)
     model.eval()
-    all_labels = np.load('dog_labels.npy')
+    label_path = os.path.join('PCPuppies', 'analyze', 'dog_labels.npy')
+    all_labels = np.load(label_path)
     if crop:
         image = image.crop((xmin, ymin, xmax, ymax))
+
     transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
