@@ -3,6 +3,8 @@ from processing.processing_fun import *
 from dataio.loading_fun import *
 from dataio.saving_fun import *
 from analyze.analysis_fun import *
+from analyze.dogbreed_fun import *
+
 import argparse
 
 def process_arguments():
@@ -59,4 +61,6 @@ def process_arguments():
             saveImage(image_processed, args.output_path)
 
 if __name__ == '__main__':
-    process_arguments()
+    x = classify_dogbreed('demodata/dog_image.jpeg')
+    print(x)
+    #process_arguments()
