@@ -21,6 +21,7 @@ def process_arguments():
     parser.add_argument('--smooth', action='store_true', help='Makes image smoother.')
     parser.add_argument('--invert', action='store_true', help='Inverts image.')
     parser.add_argument('--autocontrast', type=float, metavar='THRESH', help='Applies autocontrast in image given input THRESHOLD')
+    parser.add_argument('--get_breed', action='store_true', help='Calls classifier to predict dog breed.')
 
     #Check if user wants to retrieve program version
     args = parser.parse_args()
@@ -56,11 +57,12 @@ def process_arguments():
                 image_processed = invert(image_input)
             elif given_args['autocontrast']:
                 image_processed = apply_threshold(image_input, args_dict['autocontrast'])
+            elif given_args['get_breed']:
+                print('Breed is:', classify_dogbreed(args.input_path)[0])
             else:
                 print("ERROR: Please enter a valid processing function")
-            saveImage(image_processed, args.output_path)
+            if not given_args['get_breed']:
+                saveImage(image_processed, args.output_path)
 
 if __name__ == '__main__':
-    x = classify_dogbreed('demodata/golden.jpg')
-    print(x)
-    #process_arguments()
+    process_arguments()
