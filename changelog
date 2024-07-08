@@ -2,18 +2,25 @@
 
 ## [0.1.5] - 2024-07-07
 
- - dog classifier still overfits a lot, but this will not be fixed anymore...
- - moved classification funciton into a .py file to be acceced from the gui
+### Changed
 
+- dog classifier still overfits a lot, but this will not be fixed anymore...
+- moved classification function into a .py file to be accessed from the gui
 
 ## [0.1.4] - 2024-07-02
 
- - modified trainig loop of model to include test set. I also freeze more weights now
- - added a function to classify a new image and return category (needs to be added to the proper analysis function)
+### Changed
+
+- modified trainig loop of model to include test set, freezing of more weights
+
+### Added
+
+- added a function to classify a new image and return category (needs to be added to the proper analysis function)
 
 ## [0.1.4] - 2024-06-25
 
 ### Added
+
 - a training loop to train pytorch model to classify dog breeds. -> need to implement it to a function to classify new images
 - saved model with weights, works quite well, but could be trained further.
 

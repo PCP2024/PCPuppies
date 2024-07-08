@@ -39,6 +39,6 @@ To execute tests using unittest run: \
 
 ## Version
 
-0.1.3
+0.1.5
 
 <https://vscode.dev/github/PCP2024/PCPuppies/blob/main/VERSION>
