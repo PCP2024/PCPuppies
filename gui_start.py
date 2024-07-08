@@ -1,8 +1,5 @@
 import sys
-from PyQt6.QtWidgets import (
-    QApplication, QMainWindow, QPushButton, QLabel, QToolBar, QMessageBox, QWidget, QTextEdit, 
-    QDialogButtonBox, QDialog, QVBoxLayout, QFileDialog, QLineEdit
-)
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QToolBar, QMessageBox, QWidget, QTextEdit, QDialogButtonBox, QDialog, QVBoxLayout, QFileDialog, QLineEdit
 from PyQt6.QtGui import QPixmap, QIcon, QAction, QImage
 from PyQt6.QtCore import QSize, Qt
 from processing import processing_fun
