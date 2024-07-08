@@ -8,6 +8,9 @@ from PyQt6.QtCore import QSize, Qt
 from processing import processing_fun
 from analyze import analysis_fun
 from PIL import Image, ImageFilter
+from analyze import dogbreed_fun
+import tempfile
+import os
 
 class AnalysisDialog(QDialog):
     def __init__(self, analysis_result, parent=None):
@@ -24,7 +27,7 @@ class AnalysisDialog(QDialog):
 
         self.setLayout(layout)
         self.setMinimumSize(400, 200)
-        
+                
 class InputDialog(QDialog):
     def __init__(self, label_text, parent=None):
         super().__init__(parent)
@@ -72,7 +75,7 @@ class MainWindow(QMainWindow):
 
         # set up a toolbar
         toolbar = QToolBar("My main toolbar")
-        toolbar.setIconSize(QSize(50, 50))
+        toolbar.setIconSize(QSize(20, 20))
         self.addToolBar(toolbar)
 
         # set up a menu
@@ -80,13 +83,13 @@ class MainWindow(QMainWindow):
         file_menu = menu.addMenu("File")
 
         # implement actions
-        button_action_load = QAction(QIcon("load.jpg"), "Import image", self)
+        button_action_load = QAction(QIcon("icons/import.png"), "Import image", self)
         button_action_load.triggered.connect(self.button_click_load)
         
         #toolbar.addAction(button_action_load)
         file_menu.addAction(button_action_load)
 
-        button_action_save = QAction(QIcon("icons/save-mini.jpg"), "Save image", self)
+        button_action_save = QAction(QIcon("icons/save.png"), "Save image", self)
         button_action_save.triggered.connect(self.button_click_save)
         file_menu.addAction(button_action_save)
         
@@ -115,19 +118,22 @@ class MainWindow(QMainWindow):
         button_action_thresh.triggered.connect(lambda: self.button_click_with_input("Enter threshold:", processing_fun.apply_threshold))
         
         
-        button_action_toNumpyArray = QAction(QIcon("toArray.png"), "Convert to numpy Array", self)
+        button_action_toNumpyArray = QAction(QIcon("icons/numpy.jpg"), "Convert to numpy Array", self)
         button_action_toNumpyArray.triggered.connect(lambda: self.button_click_analysis(analysis_fun.imageToNumpyArray))
         
-        button_action_shape = QAction(QIcon("shape.jpg"), "Get shape", self)
+        button_action_shape = QAction(QIcon("icons/shape.png"), "Get shape", self)
         button_action_shape.triggered.connect(lambda: self.button_click_analysis(analysis_fun.get_image_shape))
-        
-        button_action_revert = QAction(QIcon("revert.png"), "Original image", self)
-        button_action_revert.triggered.connect(self.button_click_revert)
-        toolbar.addAction(button_action_revert)
         
         button_action_undo = QAction(QIcon("icons/undo.png"), "Undo", self)
         button_action_undo.triggered.connect(self.button_click_undo)
         toolbar.addAction(button_action_undo)
+        
+        button_action_revert = QAction(QIcon("icons/original.png"), "Original image", self)
+        button_action_revert.triggered.connect(self.button_click_revert)
+        toolbar.addAction(button_action_revert)
+        
+        button_action_classify = QAction(QIcon("icons/classifier.png"), "Classify Dog Breed", self)
+        button_action_classify.triggered.connect(self.classify_dog_breed)
         
         file_menu = menu.addMenu("Processing")
         file_menu.addAction(button_action_rotate)
@@ -143,6 +149,8 @@ class MainWindow(QMainWindow):
         file_menu.addAction(button_action_toNumpyArray)
         file_menu.addAction(button_action_shape)
     
+        file_menu = menu.addMenu("What Breed Am I?")
+        file_menu.addAction(button_action_classify)
 
     def button_click(self):
         print("Button clicked - here is an example picture")
@@ -193,7 +201,27 @@ class MainWindow(QMainWindow):
             dialog.exec()
         else:
             QMessageBox.warning(self, "No Image", "Please load an image first.")
+
+    def classify_dog_breed(self):
+        if self.current_pixmap:
+            image = self.current_pixmap.toImage()
+            pil_image = Image.fromqpixmap(image)  # QImage to PIL Image
+
+            with tempfile.NamedTemporaryFile(delete=False, suffix='.jpg') as temp_file:
+                pil_image.save(temp_file, format='JPEG')
+                temp_file_path = temp_file.name
             
+            # classification 
+            breed = dogbreed_fun.classify_dogbreed(temp_file_path)
+            analysis_result = str(breed[0]) 
+            # clean up the temporary file
+            os.remove(temp_file_path)
+            
+            dialog = AnalysisDialog(analysis_result, self)
+            dialog.exec()
+        else:
+            QMessageBox.warning(self, "No Image", "Please load an image first.")     
+        
     def button_click_with_input(self, label_text, process_function):
         if self.current_pixmap:
             dialog = InputDialog(label_text, self)
@@ -244,8 +272,7 @@ class MainWindow(QMainWindow):
             self.resize(self.current_pixmap.width(), self.current_pixmap.height())
         else:
             QMessageBox.warning(self, "No History", "No previous state to revert to.")
-    
-            
+       
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
