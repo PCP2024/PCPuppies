@@ -14,7 +14,8 @@ This project is intended to be used for editing and analyzing images through the
 
 ## GUI
 
-![download](https://github.com/PCP2024/PCPuppies/assets/35321351/8e0d8311-9bff-446f-b1f6-23af67cb725a)
+![beagle](https://github.com/PCP2024/PCPuppies/assets/35321351/2ec29e4f-87fb-4333-843f-0848800b6dd8)
+
 
 ## Install
 
